@@ -15,11 +15,11 @@
 }
 :focus,
 :active {
-  // outline: none;
+  outline: none;
 }
 a:focus,
 a:active {
-  // outline: none;
+  outline: none;
 }
 aside,
 nav,
@@ -85,3 +85,88 @@ h6 {
 }
 //</Null styles>==========================================================================================================
 
+.keyboard {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 0;
+  background: #004134;
+  box-shadow: 0 0 50px rgba(0, 0, 0, .5);
+  user-select: none;
+  transition: bottom 0.5s ease 0s;
+
+  &--hidden {
+    bottom: -100%;
+  }
+
+  // .keyboard__keys
+  &__keys {
+    text-align: center;
+
+  }
+
+  // .keyboard__key
+  &__key {
+    height: 45px;
+    width: 6%;
+    max-width: 90px;
+    margin: 3px;
+    border-radius: 4px;
+    border: none;
+    background: rgba(255, 255, 255, .2);
+    color: #ffffff;
+    font-size: 2rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: top;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+
+    &:active {
+      background: rgba(255, 255, 255, .12);
+    }
+
+    // .keyboard__key--wide
+    &--wide {
+      width: 12%;
+    }
+
+    // keyboard__key--extra-wide
+    &--extra-wide {
+      width: 36%;
+      max-width: 500px;
+    }
+
+    // keyboard__key--activatable
+    &--activatable::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      background: rgba(0, 0, 0, .5);
+      border-radius: 50%;
+    }
+
+    // keyboard__key--active
+    &--active::after {
+      background: #08ff00;
+    }
+
+    // keyboard__key--dark
+    &--dark {
+      background: rgba(0, 0, 0, .25);
+    }
+  }
+}
+
+.use-keyboard-input {
+  position: absolute;
+  top: 130px;
+  right: 30px;
+  width: 300px;
+}

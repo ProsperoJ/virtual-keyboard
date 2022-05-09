@@ -251,13 +251,11 @@ export default class Keyboard {
         cursorPos -= 1;
       },
     };
-    if (textHandlers[keyObj.code]) {
-      textHandlers[keyObj.code]();
-    } else if (!keyObj.isFnKey) {
+    if (textHandlers[keyObj.code]) textHandlers[keyObj.code]();
+    else if (!keyObj.isFnKey) {
       cursorPos += 1;
       this.output.value = `${start}${symbol || ''}${end}`;
-    } else {
-      this.output.setSelectionRange(cursorPos, cursorPos);
     }
+    this.output.setSelectionRange(cursorPos, cursorPos);
   }
 }

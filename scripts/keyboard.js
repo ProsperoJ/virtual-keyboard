@@ -16,7 +16,7 @@ export default class Keyboard {
   init(languageKey) {
     this.keyKeyboard = language[languageKey];
     this.output = createItem('textarea', 'output', null, main,
-      ['placeholder', 'Enter text please...'],
+      ['placeholder', 'Enter text please...\nTo change the language, press "ALT + SHIFT" or a separate button with the current language'],
       ['rows', 4],
       ['cols', 40]);
     this.container = createItem('div', 'show-key', `<i class="fa-keyboard">Open</i>`, main, ['code', 'show']);

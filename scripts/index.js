@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { get } from './storage.js';
 import Keyboard from './keyboard.js';
 
@@ -13,17 +14,16 @@ const lang = get('kbLang', '"ru"');
 
 new Keyboard(rowsOrder).init(lang).createRowsCnt();
 
-const showKeyboard = document.querySelector('.show-key')
+const showKeyboard = document.querySelector('.show-key');
 
-showKeyboard.onclick = function() {
+showKeyboard.onclick = function () {
   document.querySelector('.keyboard').classList.toggle('show');
 };
 
+const capsLockBtn = document.querySelector('[data-code="CapsLock"]');
+const shiftRight = document.querySelector('[data-code="ShiftRight"]');
+const shiftLeft = document.querySelector('[data-code="ShiftLeft"]');
 
-const capsLockBtn = document.querySelector('[data-code="CapsLock"]'),
-      shiftRight = document.querySelector('[data-code="ShiftRight"]'),
-      shiftLeft = document.querySelector('[data-code="ShiftLeft"]');
-
-capsLockBtn.innerHTML += `<div class="checked"></div>`;
-shiftRight.innerHTML += `<div class="checked"></div>`;
-shiftLeft.innerHTML += `<div class="checked"></div>`;
+capsLockBtn.innerHTML += '<div class="checked"></div>';
+shiftRight.innerHTML += '<div class="checked"></div>';
+shiftLeft.innerHTML += '<div class="checked"></div>';

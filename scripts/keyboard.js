@@ -1,3 +1,6 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/extensions */
+
 import * as storage from './storage.js';
 import createItem from './build.js';
 import language from './lang/app-lang.js';
@@ -16,7 +19,7 @@ export default class Keyboard {
   init(languageKey) {
     this.keyKeyboard = language[languageKey];
     this.output = createItem('textarea', 'output', null, main,
-      ['placeholder', 'Enter text please...\nTo change the language, press "ALT + SHIFT" or a separate button with the current language'],
+      ['placeholder', 'Enter text please...\nTo change the language, press "ALT + SHIFT" or a separate button with the current language\nUsed Windows'],
       ['rows', 4],
       ['cols', 40]);
     this.container = createItem('div', 'show-key', `<i class="fa-keyboard">Open</i>`, main, ['code', 'show']);
@@ -52,6 +55,7 @@ export default class Keyboard {
     if (!keyDiv) return;
     const { dataset: { code } } = keyDiv;
     keyDiv.addEventListener('mouseleave', this.resetStateItems);
+    // Handle Event
     this.handleEvent({ code, type: event.type });
   };
 

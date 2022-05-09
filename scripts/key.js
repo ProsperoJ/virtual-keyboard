@@ -15,7 +15,13 @@ export default class Key {
     }
 
     this.letter = createItem('div', 'letter', small);
-    this.div = createItem('div', 'keyboard__key', [this.sub, this.letter], null, ['code', this.code],
-      this.isFnKey ? ['fn', 'true'] : ['fn', 'false']);
+    this.div = createItem(
+      'div',
+      'keyboard__key',
+      [this.sub, this.letter],
+      null,
+      ['code', this.code],
+      this.isFnKey ? ['fn', 'true'] : ['fn', 'false'],
+    );
   }
 }

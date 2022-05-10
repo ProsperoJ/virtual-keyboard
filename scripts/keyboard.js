@@ -18,11 +18,16 @@ export default class Keyboard {
 
   init(languageKey) {
     this.keyKeyboard = language[languageKey];
-    this.output = createItem('textarea', 'output', null, main,
+    this.output = createItem(
+      'textarea',
+      'output',
+      null,
+      main,
       ['placeholder', 'Enter text please...\nTo change the language, press "ALT + SHIFT" or a separate button with the current language\nUsed Windows'],
       ['rows', 4],
-      ['cols', 40]);
-    this.container = createItem('div', 'show-key', `<i class="fa-keyboard">Open</i>`, main, ['code', 'show']);
+      ['cols', 40],
+    );
+    this.container = createItem('div', 'show-key', '<i class="fa-keyboard">Open</i>', main, ['code', 'show']);
     this.container = createItem('div', 'keyboard', null, main, ['language', languageKey]);
     document.body.prepend(main);
     return this;
@@ -66,7 +71,6 @@ export default class Keyboard {
     if (!keyObj) return;
     this.output.focus();
 
-
     // Down
     if (type.match(/keydown|mousedown/)) {
       if (!type.match(/mouse/)) event.preventDefault();
@@ -94,7 +98,7 @@ export default class Keyboard {
 
       if (code.match(/Shift/) && !this.shiftKey) {
         this.shiftKey = true;
-      }if (code.match(/Shift/) && this.shiftKey) {
+      } if (code.match(/Shift/) && this.shiftKey) {
         this.shiftKey = false;
       }
 
@@ -105,7 +109,6 @@ export default class Keyboard {
         this.isCaps = false;
         this.switchUpperCase(false);
       }
-
 
       if (!this.isCaps) {
         this.printText(keyObj, this.shiftKey ? keyObj.big : keyObj.small);
@@ -128,15 +131,15 @@ export default class Keyboard {
       if (!code.match(/Caps/)) keyObj.div.classList.remove('active');
       if (!code.match(/Shift/)) keyObj.div.classList.remove('active');
 
-      if (code.match(/Caps/))  {
+      if (code.match(/Caps/)) {
         keyObj.div.children[2].classList.toggle('show');
       }
 
-      if (code.match(/Shift/))  {
+      if (code.match(/Shift/)) {
         keyObj.div.children[2].classList.toggle('show');
       }
     }
-  }
+  };
 
   resetStateItems = ({ target: { dataset: { code } } }) => {
     if (code.match(/Shift/)) this.shiftKey = false;
@@ -144,7 +147,7 @@ export default class Keyboard {
     if (code.match(/Alt/)) this.altKey = false;
     this.resetStatePressedItems(code);
     this.output.focus();
-  }
+  };
 
   resetStatePressedItems = (targetCode) => {
     if (!this.keysPressed[targetCode]) return;
@@ -152,7 +155,7 @@ export default class Keyboard {
     if (!this.isCaps) this.keysPressed[targetCode].div.classList.remove('active');
     this.keysPressed[targetCode].div.removeEventListener('mouseleave', this.resetStateItems);
     delete this.keysPressed[targetCode];
-  }
+  };
 
   switchUpperCase(isTrue) {
     if (isTrue) {
@@ -178,7 +181,7 @@ export default class Keyboard {
           btn.letter.classList.remove('sub-inactive');
           if (!this.isCaps) {
             btn.letter.innerHTML = btn.small;
-          } else if (!this.isCaps) {
+          } else if (this.isCaps) {
             btn.letter.innerHTML = btn.big;
           }
         } else if (!btn.isFnKey) {
@@ -214,7 +217,7 @@ export default class Keyboard {
       btn.letter.innerHTML = keyObj.small;
     });
     if (this.isCaps) this.switchUpperCase(true);
-  }
+  };
 
   printText(keyObj, symbol) {
     let cursorPos = this.output.selectionStart;
@@ -226,7 +229,7 @@ export default class Keyboard {
         cursorPos += 1;
       },
       Tab: () => {
-        this.output.value = `${start}` + '\t' + `${end}`;
+        this.output.value = `${start}\t${end}`;
         cursorPos += 1;
       },
       ArrowLeft: () => {
@@ -244,7 +247,7 @@ export default class Keyboard {
         cursorPos += positionFromLeft[0].length;
       },
       Enter: () => {
-        this.output.value = `${start}` + '\n' + `${end}`;
+        this.output.value = `${start}\n${end}`;
         cursorPos += 1;
       },
       Delete: () => {

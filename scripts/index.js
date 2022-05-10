@@ -16,7 +16,7 @@ new Keyboard(rowsOrder).init(lang).createRowsCnt();
 
 const showKeyboard = document.querySelector('.show-key');
 
-showKeyboard.onclick = function () {
+showKeyboard.onclick = () => {
   document.querySelector('.keyboard').classList.toggle('show');
 };
 
